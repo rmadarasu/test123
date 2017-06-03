@@ -1,0 +1,73 @@
+log.info "Product name"+name
+
+//count total items
+def items=response.getNodeValues('//product_name')
+log.info "Total items "+items.length
+
+
+//to print all items
+for(x in items){
+log.info x
+}
+
+def prices=response.getNodeValues('//price')
+log.info "total prices "+prices.length
+
+for(i=0;i<prices.length;i++){
+log.info items[i]+"---"+prices[i]
+
+
+//TO verify the tag is present or not
+def tagname=response.getNodeValues('//tagname')
+log.info tagname.length
+
+log.info tagname[1]
+======================
+Regular expressions are used to valid what data to
+present in field
+
+regex - TO check if the field has numeric with minimum 1 val
+log.info response.getNodeValue("matches(xpath,'[0-9]{1,}')")
+
+log.info response.getNodeValue("matches(xpath,'[0-9 a-z A-Z]{5,}')")
+======================================================================
+context.setProperty("name","Raghava")
+
+
+New Test Step of Groovy
+-----------------------------
+log.info context.getProperty("name")
+
+Need to execute all test steps
+
+==================================
+Test runner
+
+change/get state of the test
+navigate to various levels in soapui
+
+https://www.soapui.org/apidocs/com/eviware/soapui/model/testsuite/TestRunner.html
+
+Groovy-1
+log.info "A Start"
+//testrunner.cancel("cancellation test") //current groovy executes but not next groovy and status pass
+testrunner.fail("failed") //first groovy will execute but status is failed
+log.info testrunner.getReason()
+log.info "A End"
+
+another Groovy
+log.info "B Start"
+tCase2=testrunner.testCase //test case level
+tSuite=testrunner.testCase.testSuite //test suite level
+proj=testrunner.testCase.testSuite.project //project level
+
+
+proj.testSuites["TestSuite 1"].testCases["TestCase 1"].testStep["Groovy Script"]
+log.info "B End"
+
+--------------------
+TC-1
+context.setProperty("name","Prasad")
+
+TC-2
+
